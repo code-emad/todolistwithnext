@@ -1,6 +1,7 @@
 import Link from "next/link"
 import {prisma} from "./db"
 import {TodoItem} from "../Components/TodoItem"
+import { revalidatePath } from "next/cache"
 
 function getTodos() {
   return prisma.todo.findMany()
@@ -10,6 +11,12 @@ async function toggleTodo(id: string, complete: boolean) {
   "use server"
 
   await prisma.todo.update({where: {id}, data: {complete}})
+}
+
+async function deleteTodo(id: string) {
+  "use server"
+  await prisma.todo.delete({where: {id}})
+  revalidatePath("/")
 }
 
 export default async function Home() {
@@ -22,7 +29,7 @@ export default async function Home() {
   </header>
   <ul className="pl-4">
     {todos.map(todo => (
-      <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo}></TodoItem>
+      <TodoItem key={todo.id} {...todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo}></TodoItem>
     ))}
   </ul>
   </>
