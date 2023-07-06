@@ -13,7 +13,7 @@ If you wish to make a local clone of this project, within your terminal you will
 
 Once the files have been cloned, you will need to change directory into the project directory and run `npm install` which will install the dependencies listed within the package.json file.
 
-`npm run dev` will allow you to run the app in development mode. Within your browser, open [http://localhost:3000](http://localhost:3000) to view it.
+`npm run dev` will allow you to run the app in development mode. Within your browser, open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## Minimum Versions
 Node v19.1.0 
